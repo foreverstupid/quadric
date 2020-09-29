@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-Wall -g -fno-exceptions -std=c++98
+CFLAGS=-Wall -O3 -Ofast -fno-exceptions -std=c++98
 LIBS=-lm
 LDFLAGS=
 

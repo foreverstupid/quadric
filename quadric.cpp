@@ -111,7 +111,7 @@ QuadricInvariants getInvariants(Point points[5])
 
     QuadricInvariants res =
     {
-        .I1 = a11 + a12,
+        .I1 = a11 + a22,
         .I2 = a11*a22 - a12*a12,
         .I3 = a11*a22*c + 2*a12*b2*b1 - a22*b1*b1 - a12*a12*c - a11*b2*b2,
         .K  = (a11 + a22)*c - b1*b1 - b2*b2

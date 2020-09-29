@@ -75,6 +75,7 @@ void gaussStep(Matrix &A, int n)
 double getDeterminant(Matrix &matrix)
 {
     int maxRow;
+    int negCoeff = 1;
 
     for (int i = 0; i < matrix.getSize() - 1; i++)
     {
@@ -83,6 +84,7 @@ double getDeterminant(Matrix &matrix)
         if (maxRow != i)
         {
             matrix.swapRows(i, maxRow);
+            negCoeff = -negCoeff;
         }
 
         gaussStep(matrix, i);
@@ -98,5 +100,5 @@ double getDeterminant(Matrix &matrix)
         det *= matrix(i, i);
     }
 
-    return det;
+    return det * negCoeff;
 }
