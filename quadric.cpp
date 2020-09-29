@@ -124,6 +124,19 @@ QuadricInvariants getInvariants(Point points[5])
 
 QuadricType getQuadricType(QuadricInvariants inv)
 {
+    /*
+     *                    I1 * I3 < 0  --> Ellips
+     *           I2 > 0   I3 = 0       --> Point
+     * I2 != 0            I1 * I3 > 0  --> Imaginary ellips
+     *
+     *           I2 < 0   I3 != 0      --> Hyperbola 
+     *                    I3 = 0       --> Crossing lines
+     *
+     *           I3 != 0               --> Parabola
+     *                    K < 0        --> Parallel lines
+     * I2 = 0    I3 = 0   K = 0        --> Line
+     *                    K > 0        --> Imaginary parallel lines
+     */
     return
         isZero(inv.I2)
         ? isZero(inv.I3)
