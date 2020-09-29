@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <cstdlib>
+#include "helpers.hpp"
 
 
 
@@ -57,11 +58,10 @@ private:
 
 
 /*
- * Solves the system of the given matrix and right parts,
- * returning solution in the right part array.
+ * Gets the determinant of the given matrix.
  *
  * Note: the matrix is changed after performing this function.
  */
-void solveGauss(Matrix &matrix, double f[]);
+double getDeterminant(Matrix &matrix);
 
 #endif

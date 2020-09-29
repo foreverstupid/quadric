@@ -2,9 +2,7 @@
 #define QUADRIC_QUADRIC_MODULE_HPP
 
 #include "matrix.hpp"
-
-/* almost zero absolute value */
-#define EPS 1e-12
+#include "helpers.hpp"
 
 
 
@@ -80,15 +78,5 @@ QuadricInvariants getInvariants(Point point[5]);
  * Returns the type of the quadric line of the given inveriants.
  */
 QuadricType getQuadricType(QuadricInvariants inv);
-
-
-
-/*
- * Checks whether the given double is almost zero or not.
- */
-inline bool ifZero(double a)
-{
-    return fabs(a) < EPS;
-}
 
 #endif

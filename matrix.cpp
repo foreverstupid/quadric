@@ -52,58 +52,51 @@ int Matrix::findMaxAbsElementRow(int n)
 /*
  * Makes one gauss forward step (for the n-th string).
  */
-void gaussStep(Matrix &A, double *f, int n)
+void gaussStep(Matrix &A, int n)
 {
     double m;
     double w = A(n, n);
 
-    for(int i = n + 1; i < A.getSize(); i++){
+    for (int i = n + 1; i < A.getSize(); i++)
+    {
         m = A(i, n) / w;
 
-        for(int j = n + 1; j < A.getSize(); j++){
+        for (int j = n + 1; j < A.getSize(); j++)
+        {
             A(i, j) -= m * A(n, j);
         }
 
-        f[i] -= m * f[n];
         A(i, n) = 0.0;
     }
 }
 
 
 
-/*
- * Performs reverse Gauss calculation.
- */
-void reverseGauss(const Matrix &A, double *f)
-{
-    double hlp;
-
-    for(int i = A.getSize() - 1; i >= 0; i--){
-        hlp = 0.0;
-
-        for(int j = A.getSize() - 1; j > i; j--){
-            hlp += A(i, j) * f[j];
-        }
-
-        f[i] = (f[i] - hlp) / A(i, i);
-    }
-}
-
-
-
-void solveGauss(Matrix &matrix, double f[])
+double getDeterminant(Matrix &matrix)
 {
     int maxRow;
 
-    for(int i = 0; i < matrix.getSize() - 1; i++){
+    for (int i = 0; i < matrix.getSize() - 1; i++)
+    {
         maxRow = matrix.findMaxAbsElementRow(i);
 
-        if(maxRow != i){
+        if (maxRow != i)
+        {
             matrix.swapRows(i, maxRow);
         }
 
-        gaussStep(matrix, f, i);
+        gaussStep(matrix, i);
+        if (isZero(matrix(i, i)))
+        {
+            return 0.0;
+        }
     }
 
-    reverseGauss(matrix, f);
+    double det = matrix(0, 0);
+    for (int i = 1; i < matrix.getSize(); i++)
+    {
+        det *= matrix(i, i);
+    }
+
+    return det;
 }
